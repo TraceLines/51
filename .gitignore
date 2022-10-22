@@ -36,7 +36,6 @@ build
 node_modules
 
 # Ignore build files
-public
 
 #cache
 .cache
@@ -44,6 +43,8 @@ public
 #51 project
 *.uvopt
 *.uvproj
+*.uvgui.加多小王子
+*.uvgui.加多小王子.bak
 Objects
 Project
 Listings
