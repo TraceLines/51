@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-24 12:11:57
- * @LastEditTime: 2022-10-24 16:12:55
+ * @LastEditTime: 2022-10-24 16:15:21
  * @Description: Do not edit
  */
 #include "reg52.h"
@@ -126,26 +126,25 @@ void LCD_ShowNum(u8 Line, u8 Column, u16 nums, u8 length)
  * @param  Length 要显示数字的长度，范围：1~5
  * @return {*}元
  */
-void LCD_ShowSignedNums(u8 Line, u8 Column, u16 Number, u8 length)
+void LCD_ShowSignedNum(unsigned char Line,unsigned char Column,int Number,unsigned char Length)
 {
-  u8 i;
-  u16 Number1;
-  LCD_SetCursor(Line, Column);
-
-  if (Number1 >= 0)
-  {
-    LCD_WriteData('+');
-    Number1 = Number;
-  }
-  else
-  {
-    LCD_WriteData('-');
-    Number1 = -Number;
-  }
-  for (i = length; i > 0; i--)
-  {
-    LCD_WriteData('0' + Number1 / math_power(10, i - 1) % 10);
-  }
+	unsigned char i;
+	unsigned int Number1;
+	LCD_SetCursor(Line,Column);
+	if(Number>=0)
+	{
+		LCD_WriteData('+');
+		Number1=Number;
+	}
+	else
+	{
+		LCD_WriteData('-');
+		Number1=-Number;
+	}
+	for(i=Length;i>0;i--)
+	{
+		LCD_WriteData('0'+Number1/LCD_Pow(10,i-1)%10);
+	}
 }
 
 /**

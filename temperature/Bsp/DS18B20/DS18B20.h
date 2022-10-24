@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-21 16:56:24
- * @LastEditTime: 2022-10-21 22:27:05
+ * @LastEditTime: 2022-10-22 17:49:32
  * @Description: Do not edit
  */
 #ifndef __BSP_DS18B20
@@ -10,7 +10,7 @@
 //
 #include "reg52.h"
 #include "Public.h"
-
+// #include "uart.h"
 // GPIO定义
 sbit DSPORT = P3 ^ 7;
 // 函数声明

@@ -1,15 +1,13 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-18 17:10:02
- * @LastEditTime: 2022-10-21 22:42:27
+ * @LastEditTime: 2022-10-22 16:25:54
  * @Description: Do not edit
  */
 #include "smg.h"
 
-u8 gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
+u8 code gsmg_code[17] = {0x3f, 0x06, 0x5b, 0x4f, 0x66, 0x6d, 0x7d, 0x07,
                          0x7f, 0x6f, 0x77, 0x7c, 0x39, 0x5e, 0x79, 0x71};
-// u8 code gsmg_code[17] = {0xc0, 0xf9, 0xa4, 0xb0, 0x99, 0x92, 0x82, 0xf8,
-//                        0x80, 0x90, 0x88, 0x83, 0xc6, 0xa1, 0x86, 0x8e};
 /**
  * @description:
  * @param {u8} bitNum，要显示的位数
@@ -69,7 +67,7 @@ void LED_display(u8 bitNum, u8 *valueArr)
     default:
       break;
     }
-    SEG_PORT = gsmg_code[valueArr[i - bitNum]];
+    SEG_PORT = valueArr[i - bitNum];
     delay(50);
     SEG_PORT = 0x00;
   }

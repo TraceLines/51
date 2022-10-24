@@ -1,26 +1,32 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-21 16:50:05
- * @LastEditTime: 2022-10-22 15:25:57
+ * @LastEditTime: 2022-10-22 18:11:50
  * @Description: Do not edit
  */
 
 #include "Public.h"
 #include "DS18B20.h"
 #include "smg.h"
+#include "uart.h"
 
 sbit LED_inform1 = P2 ^ 7;
 sbit LED_inform2 = P2 ^ 6;
 
-extern u8 gsmg_code[17];
+
+extern u8 code gsmg_code[17];
+
+
 void main(void)
 {
+
 	int i;
 	int temp_value = 0;
 	u8 temp_buf[5];
-	u8 isNotExist;
-	isNotExist = ds18b20_initial();
-	if (isNotExist)
+	u8 isExist;
+	isExist = ds18b20_initial();
+	usart_init();
+	if (isExist)
 	{
 		LED_inform1 = 0;
 	}
