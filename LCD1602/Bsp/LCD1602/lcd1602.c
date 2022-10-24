@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-24 12:11:57
- * @LastEditTime: 2022-10-24 16:20:15
+ * @LastEditTime: 2022-10-24 16:42:18
  * @Description: Do not edit
  */
 #include "reg52.h"
@@ -126,7 +126,15 @@ void LCD_ShowNum(u8 Line, u8 Column, u16 nums, u8 length)
  * @param  Length 要显示数字的长度，范围：1~5
  * @return {*}元
  */
-void LCD_ShowSignedNums(u8 Line, u8 Column, u16 nums, u8 length)
+/**
+ * @description: 在LCD1602指定位置开始以有符号十进制显示所给数字
+ * @param {u8} Line 起始行位置，范围：1~2
+ * @param {u8} Column 始列位置，范围：1~16
+ * @param {int} nums 要显示的数字，范围：-32768~32767，
+ * @param {u8} length
+ * @return {*}
+ */
+void LCD_ShowSignedNums(u8 Line, u8 Column, int nums, u8 length)
 {
   u8 i;
   u16 Number;
