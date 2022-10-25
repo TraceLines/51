@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-21 15:13:47
- * @LastEditTime: 2022-10-25 17:15:31
+ * @LastEditTime: 2022-10-25 20:00:40
  * @Description: Do not edit
  */
 #include "reg52.h"
@@ -12,7 +12,7 @@
 
 int charactersPair[16][2] =
     {
-        {0x81, 'A'}, {0x82, 3}, {0x84, 2}, {0x88, 1}, {0x41, 'B'}, {0x42, 6}, {0x44, 5}, {0x48, 4}, {0x21, 'C'}, {0x22, 9}, {0x24, 8}, {0x28, 7}, {0X11, 'D'}, {0X12, '#'}, {0X14, 0}, {0X18, '*'}};
+        {0x81, 'A'}, {0x82, 3}, {0x84, 2}, {0x88, 1}, {0x41, 'B'}, {0x42, 6}, {0x44, 5}, {0x48, 4}, {0x21, 'C'}, {0x22, 9}, {0x24, 8}, {0x28, 7}, {0X11, 'D'}, {0X12, '#'}, {0X14, '0'}, {0X18, '*'}};
 /**
  * @description:
  * @return {*}
@@ -55,59 +55,6 @@ u8 handleKeyPress()
   KeyValue = getsmgNum(keyPosition);
   return KeyValue;
 }
-
-// void KeyDown(void)
-// {
-//   u8 keyValue;
-//   char a = 0;
-//   GPIO_KEY = 0x0f;
-//   if (GPIO_KEY != 0x0f) //读取按键是否按下
-//   {
-//     Delayx1m(10);         //延时10ms进行消抖
-//     if (GPIO_KEY != 0x0f) //再次检测键盘是否按下
-//     {
-//       //测试列
-//       GPIO_KEY = 0X0F;
-//       switch (GPIO_KEY)
-//       {
-//       case (0X07):
-//         keyValue = 0;
-//         break;
-//       case (0X0b):
-//         keyValue = 1;
-//         break;
-//       case (0X0d):
-//         keyValue = 2;
-//         break;
-//       case (0X0e):
-//         keyValue = 3;
-//         break;
-//       }
-//       //测试行
-//       GPIO_KEY = 0XF0;
-//       switch (GPIO_KEY)
-//       {
-//       case (0X70):
-//         keyValue = keyValue;
-//         break;
-//       case (0Xb0):
-//         keyValue = keyValue + 4;
-//         break;
-//       case (0Xd0):
-//         keyValue = keyValue + 8;
-//         break;
-//       case (0Xe0):
-//         keyValue = keyValue + 12;
-//         break;
-//       }
-//     }
-//   }
-//   while ((a < 50) && (GPIO_KEY != 0xf0)) //检测按键松手检测
-//   {
-//     Delayx1m(10);
-//     a++;
-//   }
-// }
 
 /**
  * @description:
