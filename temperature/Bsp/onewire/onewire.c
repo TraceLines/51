@@ -1,14 +1,13 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-25 08:54:28
- * @LastEditTime: 2022-10-25 14:16:23
+ * @LastEditTime: 2022-10-25 14:19:18
  * @Description: 单总线功能
  */
 
 #include "reg52.h"
 #include "Public.h"
 #include "LCD1602.h"
-#include "intrins.h"
 
 sbit oneWire_DQ = P3 ^ 7;
 
@@ -85,8 +84,6 @@ u8 oneWire_receiveBit()
 void oneWire_sendByte(u8 charByte)
 {
   u8 i;
-  // _nop_();
-  // LCD_ShowHexNum(2, 11, charByte, 2);
   for (i = 0; i < 8; i++)
   {
     oneWire_sendBit(charByte & (0x01 << i));
