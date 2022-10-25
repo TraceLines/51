@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-18 17:10:02
- * @LastEditTime: 2022-10-22 16:25:54
+ * @LastEditTime: 2022-10-25 08:41:11
  * @Description: Do not edit
  */
 #include "smg.h"
@@ -68,7 +68,7 @@ void LED_display(u8 bitNum, u8 *valueArr)
       break;
     }
     SEG_PORT = valueArr[i - bitNum];
-    delay(50);
+    Delay1ms();
     SEG_PORT = 0x00;
   }
 }

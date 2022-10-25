@@ -1,58 +1,39 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-21 16:50:05
- * @LastEditTime: 2022-10-22 18:11:50
+ * @LastEditTime: 2022-10-25 11:47:36
  * @Description: Do not edit
  */
 
 #include "Public.h"
 #include "DS18B20.h"
-#include "smg.h"
-#include "uart.h"
+#include "LCD1602.h"
+// extern u8 code gsmg_code[17];
 
-sbit LED_inform1 = P2 ^ 7;
-sbit LED_inform2 = P2 ^ 6;
-
-
-extern u8 code gsmg_code[17];
-
-
+float T;
 void main(void)
 {
 
-	int i;
-	int temp_value = 0;
-	u8 temp_buf[5];
-	u8 isExist;
-	isExist = ds18b20_initial();
-	usart_init();
-	if (isExist)
-	{
-		LED_inform1 = 0;
-	}
-	else
-	{
-		LED_inform2 = 0;
-	}
-
+	LCD_init();
+	// LCD_ShowString(1, 1, "temperature");
 	while (1)
 	{
-		i++;
-		if (i % 50)
-			temp_value = ds18b20_read_temperature() * 10;
-		if (temp_value < 0)
+		// 开始转换温度
+		DS18B20_convertT();
+		// 读取温度
+		T = DS18B20_readT();
+		// 显示温度
+		if (T < 0)
 		{
-			temp_value = -temp_value;
-			temp_buf[0] = 0x40;
+			LCD_ShowChar(2, 1, '-');
+			T = -T;
 		}
 		else
 		{
-			temp_buf[0] = 0x00;
+			LCD_ShowChar(2, 1, '+');
 		}
-		temp_buf[1] = gsmg_code[temp_value / 1000];
-		temp_buf[2] = gsmg_code[temp_value % 1000 / 100];
-		temp_buf[3] = gsmg_code[temp_value % 1000 % 100 / 10] | 0x80;
-		temp_buf[4] = gsmg_code[temp_value % 1000 % 100 % 10];
-		LED_display(3, temp_buf);
+		LCD_ShowNum(2, 2, T, 3);
+		LCD_ShowChar(2, 5, '.');
+		LCD_ShowNum(2, 6, (unsigned long)(T * 10000) % 10000, 4);
 	}
 }
