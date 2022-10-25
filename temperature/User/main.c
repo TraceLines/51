@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-21 16:50:05
- * @LastEditTime: 2022-10-25 11:47:36
+ * @LastEditTime: 2022-10-25 14:16:57
  * @Description: Do not edit
  */
 
@@ -14,6 +14,8 @@ float T;
 void main(void)
 {
 
+	DS18B20_convertT();
+	Delayx1m(100);
 	LCD_init();
 	// LCD_ShowString(1, 1, "temperature");
 	while (1)
@@ -35,5 +37,6 @@ void main(void)
 		LCD_ShowNum(2, 2, T, 3);
 		LCD_ShowChar(2, 5, '.');
 		LCD_ShowNum(2, 6, (unsigned long)(T * 10000) % 10000, 4);
+
 	}
 }
