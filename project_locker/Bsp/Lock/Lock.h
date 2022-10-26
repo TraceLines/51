@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-25 20:27:16
- * @LastEditTime: 2022-10-25 21:42:18
+ * @LastEditTime: 2022-10-26 09:03:34
  * @Description:简易电子密码锁
  */
 #ifndef __BSP_LOCK_H__
@@ -19,7 +19,7 @@ void locker_confirmSet();
 void locker_cancelSet();
 void locker_deleteSetBit();
 void locker_checkPassword();
-void locker_init();
+void locker_init(unsigned char *tipsString);
 
 void handleLockerStatus();
 

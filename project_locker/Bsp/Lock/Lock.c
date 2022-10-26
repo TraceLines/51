@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-25 20:27:12
- * @LastEditTime: 2022-10-25 22:16:38
+ * @LastEditTime: 2022-10-26 09:04:38
  * @Description: Do not edit
  */
 #include "reg52.h"
@@ -37,12 +37,12 @@ u8 keyStatus = 0; //键盘状态0:默认输入，1:密码重置
  * @description: 欢迎界面以及初始化
  * @return {*}
  */
-void locker_init()
+void locker_init(u8 *tipsString)
 {
   keyStatus = 0;
   inputLocal = 0;
   LCD_Clear();
-  LCD_ShowString(1, 1, "password:");
+  LCD_ShowString(1, 1, tipsString);
 }
 
 /**
@@ -84,10 +84,8 @@ void locker_confirm()
   u8 i;
   if (keyStatus) //密码重置，成功提示
   {
-    LCD_Clear();
-    LCD_ShowString(1, 1, "done!");
     Delayx1m(1000);
-    locker_init();
+    locker_init("done!");
   }
   else //输入确认，比较密码
   {
@@ -99,8 +97,7 @@ void locker_confirm()
         return;
       }
     }
-    LCD_Clear();
-    LCD_ShowString(1, 1, "Welcome!");
+    locker_init("Welcome");
   }
 }
 
@@ -164,14 +161,14 @@ void handleLockerStatus()
         locker_passwordSet();
         break;
       case 'B': //返回输入密码界面
-        locker_init();
+        locker_init("password:");
         break;
       case 'D': //输入确认
         /* code */
         locker_confirm();
         break;
       case 'C': //取消设置
-        locker_init();
+        locker_init("password:");
         break;
       default:
         break;
