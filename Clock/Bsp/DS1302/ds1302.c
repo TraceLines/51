@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-26 15:07:50
- * @LastEditTime: 2022-10-26 17:15:00
+ * @LastEditTime: 2022-10-26 21:01:02
  * @Description: DS1302芯片驱动/功能
  */
 
@@ -34,30 +34,27 @@ u8 DS1302_readByte(u8 command)
   u8 recieve_byte = 0;
   command |= 0x01; //将相关写指令转换为读指令
   DS1302_CE = 0;   //拉低CE引脚
-  DS1302_SCLK = 0; //拉低时钟引脚
   DS1302_CE = 1;   //拉高，使能通信
   // 发送命令 将命令通过IO引脚bit by bit传给DS1302
   for (i = 0; i < 8; i++)
   {
+    DS1302_SCLK = 0; //拉低，为下次传位做准备
     DS1302_IO = command & (0x01 << i);
     DS1302_SCLK = 1; //拉高，制造上升沿，使位得以传输
-    DS1302_SCLK = 0; //拉低，为下次传位做准备
   }
-  DS1302_SCLK = 1;
-  DS1302_IO = 0;
   // 接收数据
   for (i = 0; i < 8; i++)
   {
-
-    DS1302_SCLK = 0; //拉低，制造下降沿，使位得以传输
-    if (DS1302_IO)   //先判断值是否为1，若为1，则将0x01移动到第i位，与原值执行或运算以保留原值
-    {                //若不存储，则保留原值不变，这个处理挺巧妙的
-      recieve_byte |= (0x01 << i);
+    DS1302_SCLK = 1;
+    DS1302_SCLK = 0; //制造下降沿，让从机把数据传过来
+    if (DS1302_IO)
+    {
+      recieve_byte |= (0x01 << i); //接收并存储从机传来的数据
     }
-    DS1302_SCLK = 1; //拉高，为下次传位做准备
   }
 
   // 完成通信，关闭通信使能位
+  DS1302_IO = 0;
   DS1302_CE = 0;
   return recieve_byte;
 }
