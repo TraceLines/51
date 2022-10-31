@@ -1,15 +1,15 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-31 16:37:09
- * @LastEditTime: 2022-10-31 22:49:15
+ * @LastEditTime: 2022-10-31 22:53:33
  * @Description: Do not edit
  */
 
 // #include "iRed.h"
-// #include "Timer_1.h"
+#include "Timer1.h"
 // #include "Timer0.h"
 #include "lcd1602.h"
-#include "copy.h"
+// #include "copy.h"
 
 // #include "Public.h"
 
