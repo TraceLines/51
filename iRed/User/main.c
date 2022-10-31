@@ -1,14 +1,14 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-31 16:37:09
- * @LastEditTime: 2022-10-31 22:53:33
+ * @LastEditTime: 2022-10-31 22:59:07
  * @Description: Do not edit
  */
 
 // #include "iRed.h"
 #include "Timer1.h"
 // #include "Timer0.h"
-#include "lcd1602.h"
+// #include "lcd1602.h"
 // #include "copy.h"
 
 // #include "Public.h"
@@ -18,7 +18,7 @@ void main()
 {
 
   // iRed_init();
-  LCD_init();
+  // LCD_init();
   Timer1_init();
   Timer1_setCounter(0);
   Timer1_run(1);
