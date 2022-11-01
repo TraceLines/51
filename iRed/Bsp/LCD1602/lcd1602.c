@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-24 12:11:57
- * @LastEditTime: 2022-10-24 16:42:18
+ * @LastEditTime: 2022-11-01 11:39:39
  * @Description: Do not edit
  */
 #include "reg52.h"
@@ -45,9 +45,9 @@ void LCD_init()
 {
   //
   LCD_WriteCommand(0x38); // 8位数据接口，两行显示 5*7点阵
-  LCD_WriteCommand(0x0c); //显示开，光标关，闪烁关
-  LCD_WriteCommand(0x06); //数据读写操作后，光标自动加1，画片不移动
-  LCD_WriteCommand(0x01); //清屏
+  LCD_WriteCommand(0x0c); // 显示开，光标关，闪烁关
+  LCD_WriteCommand(0x06); // 数据读写操作后，光标自动加1，画片不移动
+  LCD_WriteCommand(0x01); // 清屏
 }
 
 /**
@@ -114,7 +114,7 @@ void LCD_ShowNum(u8 Line, u8 Column, u16 nums, u8 length)
   LCD_SetCursor(Line, Column);
   for (i = length; i > 0; i--)
   {
-    LCD_WriteData('0' + nums / math_power(10, i - 1) % 10);
+    LCD_WriteData('0' + (nums / math_power(10, i - 1) % 10));
   }
 }
 

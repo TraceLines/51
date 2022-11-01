@@ -1,7 +1,7 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-24 14:29:39
- * @LastEditTime: 2022-10-31 20:47:06
+ * @LastEditTime: 2022-11-01 12:38:00
  * @Description: Do not edit
  */
 
@@ -14,7 +14,7 @@ void Delay1ms() //@11.0592MHz
 
   _nop_();
   i = 2;
-  j = 199;
+  j = 239;
   do
   {
     while (--j)
@@ -28,7 +28,7 @@ void Delayx1m(unsigned int xms) //@11.0592MHz
   while (xms--)
   {
     i = 2;
-    j = 199;
+    j = 239;
     do
     {
       while (--j)
