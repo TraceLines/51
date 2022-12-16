@@ -2,8 +2,8 @@
  * @Author       :
  * @Date         : 2022-12-16 10:47:12
  * @LastEditors  : miduoduo
- * @LastEditTime : 2022-12-16 13:38:45
- * @FilePath     : \AT24C02\Bsp\I2C\I2C.C
+ * @LastEditTime : 2022-12-16 14:02:03
+ * @FilePath     : \AT24C02\Bsp\I2C\I2C.c
  * @desc         : 注意，这个程序是使用51单片机去读取AT24C02，也就是说使用I2C协议去读取EEPROM，作为读方，即51单片机是作为主机来设定的。所以在一些软件中
  *                 会去操作SCL时钟线，因为MCU是主机，可以操作SCL线。
  * 另外一件事情是，在I2C通信中有两种通信速率模式，100kbps和400kbps，但在软件模拟中，并不能完全遵循此。而在此例程中，SCL的高低电平变化，完全由软件来控制。
@@ -13,8 +13,8 @@
  */
 #include "reg52.h"
 
-sbit I2C_SCL = p2 ^ 1;
-sbit I2C_SDA = p2 ^ 0;
+sbit I2C_SCL = P2 ^ 1;
+sbit I2C_SDA = P2 ^ 0;
 void I2C_Start(void)
 {
     // 产生起始信号的条件：SDA和SCL从高电平变为低电平，并且是SDA先拉低，随后再SCL再被拉低，则产生起始信号
@@ -67,7 +67,7 @@ unsigned char I2C_ReceiveByte(void)
         I2C_SCL = 1; // 将SCL拉高，以读取SDA。协议规定，要在SCL高电平期间去读取SDA的数据
         if (I2C_SDA)
         {
-            Byte = |= (0x80 >> i);
+            Byte |= (0x80 >> i);
         }
         I2C_SCL = 0; // 将SCL拉低，表示1bit数据读完，发送方则在此期间改变数据
     }
