@@ -1,11 +1,12 @@
 /*
  * @Author: king jing
  * @Date: 2022-10-24 14:29:39
- * @LastEditTime: 2022-10-31 11:43:44
+ * @LastEditTime: 2022-11-01 12:38:00
  * @Description: Do not edit
  */
 
 #include "intrins.h"
+#include "Public.h"
 
 void Delay1ms() //@11.0592MHz
 {
@@ -13,7 +14,7 @@ void Delay1ms() //@11.0592MHz
 
   _nop_();
   i = 2;
-  j = 199;
+  j = 239;
   do
   {
     while (--j)
@@ -27,7 +28,7 @@ void Delayx1m(unsigned int xms) //@11.0592MHz
   while (xms--)
   {
     i = 2;
-    j = 199;
+    j = 239;
     do
     {
       while (--j)
@@ -36,10 +37,10 @@ void Delayx1m(unsigned int xms) //@11.0592MHz
   }
 }
 
-unsigned int math_power(unsigned char base, unsigned char expo)
+u16 math_power(u8 base, u8 expo)
 {
-  unsigned char result = 1;
-  unsigned char i;
+  u8 result = 1;
+  u8 i;
   for (i = 0; i < expo; i++)
   {
     result *= base;
